@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model Dish
+
+<h1>Add a new Dish</h1>
+<a href="/">Home</a>
+<form asp-action="Create" asp-controller="Home" method="post" class="col5-5 mx-auto">
+
+    <div class="form-group">
+        <span asp-validation-for="ChefName"></span>
+        <label asp-for="ChefName"></label><br>
+        <input asp-for="ChefName"> <br><br>
+    </div>
+
+    <div class="form-group">
+        <span asp-validation-for="DishName"></span>
+        <label asp-for="DishName"></label><br>
+        <input asp-for="DishName"> <br><br>
+    </div>
+
+    <div class="form-group">
+        <span asp-validation-for="Calories"></span>
+        <label asp-for="Calories"></label><br>
+        <input asp-for="Calories"> <br><br>
+    </div>
+
+    <div class="form-group">
+        <span asp-validation-for="Tastiness"></span>
+        <label asp-for="Tastiness"></label><br>
+        <select asp-for="Tastiness">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select> <br><br>
+
+    </div>
+
+    <div class="form-group">
+
+        <span asp-validation-for="Description"></span>
+        <label asp-for="Description"></label><br>
+        <textarea asp-for="Description"></textarea> <br><br>
+    </div>
+
+    <input type="submit" value="Add Dish" class="btn btn-danger">
+    </form>
