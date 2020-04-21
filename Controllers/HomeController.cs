@@ -54,6 +54,14 @@ namespace CRUDelicious.Controllers
             return View(singleDish);
         }
 
+        [HttpGet("edit/{tempId}")]
+        public IActionResult EditDish(int tempId)
+        {
+            Dish singleDish = _context.Dishess.SingleOrDefault(x => x.DishId == tempId);
+            return View(singleDish);
+
+        }
+
         [HttpPost("edit/{tempId}")]
         public IActionResult Edit(int tempId, Dish editDish)
         {
@@ -67,13 +75,22 @@ namespace CRUDelicious.Controllers
                 singleDish.Description = editDish.Description;
                 singleDish.Updated = DateTime.Now;
                 _context.SaveChanges();
-                return RedirectToAction("Dish");
+                return Redirect($"/{tempId}");
             }
             else
             {
-                return View("EditDish");
+                return View("EditDish", editDish);
             }
 
+        }
+
+        [HttpGet("delete/{tempId}")]
+        public IActionResult Delete(int tempId)
+        {
+            Dish deleteDish = _context.Dishess.SingleOrDefault(x => x.DishId == tempId);
+            _context.Dishess.Remove(deleteDish);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         
